@@ -1,22 +1,31 @@
 // add your imports here
-int main(){
-  //Input numbers
-  int numOfSeeds = 0;
-  int seeds[numOfSeeds];
-  int randomNumber = XorShift(seeds);
-  int clampedNumber = clamp(randomNumber,0,100);
-  // code here
-}
+#include <iostream>
 
-int XorShift(int seeds[])
+int XorShift(unsigned int seed)
 {
-  int t = seeds[0] ^ (seeds[0] << 13);
-  seeds[0] = seeds[1]; seeds[1] = seeds[2]; seeds[2] = seeds[3];
-  return seeds[3] = seeds[3] ^ (seeds[3] >> 17) ^ t ^ (t << 5);
+  seed = seed ^ (seed << 13);
+  seed = seed ^ (seed >> 17);
+  return seed ^ (seed << 5);
 }
 
-int clamp(int number, int min, int max)
+int clamp(unsigned int number, signed int min, signed int max)
 {
   int value = min +(number % (max-min+1));
   return value;
 }
+
+int main(){
+  //Input numbers
+  unsigned int seed, numberOfRandNums, randomNumber, clampedNumber;
+  signed int minRange, maxRange;
+  std::cin >> seed >> numberOfRandNums >> minRange >> maxRange;
+
+  for(int i = 0; i < numberOfRandNums; i++)
+  {
+    randomNumber = XorShift(seed);
+    seed = randomNumber;
+    clampedNumber = clamp(randomNumber,minRange,maxRange);
+    std::cout << clampedNumber << std::endl;
+  }
+}
+
