@@ -1,16 +1,16 @@
 // add your imports here
 #include <iostream>
 
-int XorShift(unsigned int seed)
+unsigned int XorShift(unsigned int seed)
 {
   seed = seed ^ (seed << 13);
   seed = seed ^ (seed >> 17);
   return seed ^ (seed << 5);
 }
 
-int clamp(unsigned int number, signed int min, signed int max)
+unsigned int clamp(unsigned int number, signed int min, signed int max)
 {
-  int value = min +(number % (max-min+1));
+  unsigned int value = min +(number % (max-min+1));
   return value;
 }
 
