@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <vector>
 
 using namespace std;
@@ -7,6 +8,7 @@ int main(){
 
   vector<char> vertical, horizontal;
   char currentPoint;
+  std::string ignoreLine, verticalLine, horizontalLine;
 
   int rows = 0;
   int columns = 0;
@@ -22,10 +24,16 @@ int main(){
   // Init Board
   vector<vector<char>> board(columns, vector<char>(rows));
 
-  // Get World
-  for (int i = 0; i<rows; i++)
+
+  getline(cin, verticalLine, ' ');
+  for (auto i : verticalLine)
   {
-    cin >> currentPoint;
+    cout << i << endl;
+  }
+
+  // Get World
+  /*for (int i = 0; i<rows; i++)
+  {
     for(int j = 0; j<columns; j++)
     {
       //input each point in row
@@ -33,9 +41,9 @@ int main(){
       cin >> currentPoint;
       board[i][j] = currentPoint;
     }
-  }
+  }*/
 
-  cout << "Board Size: " << board.size();
+  cout << "Board Size: " << verticalLine.size();
 
   return 0;
 
